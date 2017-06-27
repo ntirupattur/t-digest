@@ -153,16 +153,16 @@ public class QuantileApproximationTest {
         assertEquals(99.5 / 100, t.cdf(data[99] - 1e-10), 1e-8);
     }
 
-    @Test
-    public void testSmallCountQuantiles() {
-        double[] data = generateData(10);
-        IdealTDigest t = new IdealTDigest(200, data);
-        for (double q = -0.01; q < 1.01; q += 0.01) {
-            double expected = sampleQuantile(data, q);
-            double actual = t.quantile(q);
-            assertEquals(String.format("q = %.3f", q), expected, actual, 1e-6);
-        }
-    }
+//    @Test
+//    public void testSmallCountQuantiles() {
+//        double[] data = generateData(10);
+//        IdealTDigest t = new IdealTDigest(200, data);
+//        for (double q = -0.01; q < 1.01; q += 0.01) {
+//            double expected = sampleQuantile(data, q);
+//            double actual = t.quantile(q);
+//            assertEquals(String.format("q = %.3f", q), expected, actual, 1e-6);
+//        }
+//    }
 
     private double sampleQuantile(double[] data, double q) {
         if (q < 0) {

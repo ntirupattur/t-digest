@@ -17,10 +17,12 @@
 
 package com.tdunning.math.stats;
 
+import java.io.Serializable;
+
 /**
  * Abstract class that describes how a Histogram should work.
  */
-public abstract class Histogram {
+public abstract class Histogram implements Serializable {
     public Histogram(double min, double max, double binsPerDecade) {
         if (max <= 2 * min) {
             throw new IllegalArgumentException(String.format("Illegal/nonsensical min,max (%.2f, %.2g)", min, max));

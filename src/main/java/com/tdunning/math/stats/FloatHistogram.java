@@ -25,6 +25,7 @@ import java.nio.LongBuffer;
  * to exponential binning, but should be faster.
  */
 public class FloatHistogram extends Histogram {
+    private static final long serialVersionUID = -8497429885746754291L;
     private final long[] counts;
     private final double min;
     private final double max;
@@ -56,6 +57,14 @@ public class FloatHistogram extends Histogram {
 
         }
         counts = new long[binCount];
+    }
+
+    public void add(FloatHistogram h) throws Exception{
+        if (h.min != min || h.max != max || h.bitsOfPrecision != bitsOfPrecision)
+            throw new Exception ("Can't add different resolution histograms");
+        for (int i=0;i<counts.length;i++) {
+            counts[i] = counts[i] + h.counts[i];
+        }
     }
 
     // exposed for testing
@@ -107,4 +116,26 @@ public class FloatHistogram extends Histogram {
         buf.get(r);
         return r;
     }
+
+    /**
+     * @return the min
+     */
+    public double getMin() {
+      return min;
+    }
+
+    /**
+     * @return the max
+     */
+    public double getMax() {
+      return max;
+    }
+
+    /**
+     * @return the bitsOfPrecision
+     */
+    public int getBitsOfPrecision() {
+      return bitsOfPrecision;
+    }
+
 }

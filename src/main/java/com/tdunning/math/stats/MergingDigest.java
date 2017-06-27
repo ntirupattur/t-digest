@@ -17,6 +17,7 @@
 
 package com.tdunning.math.stats;
 
+import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ import java.util.List;
  * what the AVLTreeDigest uses.  Speed tests are still not complete so it is uncertain whether the merge
  * strategy is faster than the tree strategy.
  */
-public class MergingDigest extends AbstractTDigest {
+public class MergingDigest extends AbstractTDigest implements Serializable{
     private final double compression;
 
     // points to the centroid that is currently being merged
